@@ -107,8 +107,9 @@ st.plotly_chart(fig_candle)
 tickers = st.multiselect("Compare Stocks", ["AAPL", "MSFT", "GOOG", "TSLA"], default=["AAPL"])
 
 for t in tickers:
-    df = yf.download(t, start=start_date, end=end_date)['Close']
-    st.line_chart(df.rename(t))
+    df = yf.download(t, start=start_date, end=end_date)[['Close']]
+    df = df.rename(columns={"Close": t})
+    st.line_chart(df)
 
 
 #download the csv
