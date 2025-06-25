@@ -108,8 +108,15 @@ tickers = st.multiselect("Compare Stocks", ["AAPL", "MSFT", "GOOG", "TSLA"], def
 
 for t in tickers:
     df = yf.download(t, start=start_date, end=end_date)[['Close']]
-    df = df.rename(columns={"Close": t})
-    st.line_chart(df)
+    
+    # Only proceed if data isn't empty
+    if not df.empty:
+        df = df.rename(columns={"Close": t})
+        df.index = pd.to_datetime(df.index)  # Ensure datetime index
+        st.line_chart(df)
+    else:
+        st.warning(f"No data available for {t}")
+
 
 
 #download the csv
