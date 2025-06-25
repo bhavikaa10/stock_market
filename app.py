@@ -104,18 +104,6 @@ fig_candle = go.Figure(data=[go.Candlestick(
 st.subheader("📊 Candlestick Chart")
 st.plotly_chart(fig_candle)
 
-
-df_prophet = data[['Close']].reset_index()
-df_prophet.columns = ['ds', 'y']
-
-m = Prophet()
-m.fit(df_prophet)
-future = m.make_future_dataframe(periods=30)
-forecast = m.predict(future)
-
-st.write("### 30-Day Forecast")
-fig2 = m.plot(forecast)
-
 tickers = st.multiselect("Compare Stocks", ["AAPL", "MSFT", "GOOG", "TSLA"], default=["AAPL"])
 
 for t in tickers:
