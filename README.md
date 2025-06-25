@@ -24,3 +24,10 @@ An interactive Streamlit web app to visualize stock prices, analyze technical in
 🧮 Multi-Stock Comparison
 
 📥 Export data to CSV
+
+
+Try the app!
+
+https://stock-visualisation.streamlit.app/
+
+
