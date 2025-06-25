@@ -101,6 +101,7 @@ fig_candle = go.Figure(data=[go.Candlestick(
     low=data['Low'],
     close=data['Close']
 )])
+st.subheader("📊 Candlestick Chart")
 st.plotly_chart(fig_candle)
 
 
