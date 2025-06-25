@@ -104,21 +104,6 @@ fig_candle = go.Figure(data=[go.Candlestick(
 st.subheader("📊 Candlestick Chart")
 st.plotly_chart(fig_candle)
 
-tickers = st.multiselect("Compare Stocks", ["AAPL", "MSFT", "GOOG", "TSLA"], default=["AAPL"])
-
-for t in tickers:
-    df = yf.download(t, start=start_date, end=end_date)[['Close']]
-    
-    # Only proceed if data isn't empty
-    if not df.empty:
-        df = df.rename(columns={"Close": t})
-        df.index = pd.to_datetime(df.index)  # Ensure datetime index
-        st.line_chart(df)
-    else:
-        st.warning(f"No data available for {t}")
-
-
-
 #download the csv
 csv = data.to_csv().encode('utf-8')
 st.download_button(
