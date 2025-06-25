@@ -85,10 +85,15 @@ if ticker:
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
+# technical indicators (RSI, MACD)
 data = data.copy()
 data['RSI'] = ta.momentum.RSIIndicator(data['Close']).rsi()
 data['MACD'] = ta.trend.MACD(data['Close']).macd()
 
+st.subheader("📊 Technical Indicators")
+st.line_chart(data[['RSI', 'MACD']])
+
+#candle stick chart
 fig_candle = go.Figure(data=[go.Candlestick(
     x=data.index,
     open=data['Open'],
@@ -117,6 +122,7 @@ for t in tickers:
     st.line_chart(df.rename(t))
 
 
+#download the csv
 csv = data.to_csv().encode('utf-8')
 st.download_button(
     "Download CSV",
